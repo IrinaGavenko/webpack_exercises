@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type {Configuration as DevServerConfiguration} from 'webpack-dev-server';
 
 type Mode = 'development' | 'production';
@@ -21,12 +22,31 @@ export default (env: EnvVariables) => {
             clean: true,
         },
         plugins: [
-            new HtmlWebpackPlugin({template: path.resolve(__dirname, 'public', 'index.html')}),
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, 'public', 'index.html'),
+            }),
             // show build progress, usually really slow
             isDev && new webpack.ProgressPlugin(),
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
         ].filter(Boolean),
         module: {
             rules: [
+                // order is important!
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        // Creates `style` nodes from JS strings
+                        // style-loader -> MiniCssExtractPlugin.loader
+                        MiniCssExtractPlugin.loader,
+                        // Translates CSS into CommonJS
+                        "css-loader",
+                        // Compiles Sass to CSS
+                        "sass-loader",
+                    ],
+                },
                 {
                     test: /\.tsx?$/,
                     use: 'ts-loader',
