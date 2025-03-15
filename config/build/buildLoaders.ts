@@ -6,6 +6,16 @@ import {BuildOptions} from './types/types';
 export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
     const isDev = mode === 'development';
 
+    const cssLoaderWithModules = {
+        loader: 'css-loader',
+        options: {
+            modules: {
+                // making readable styles classes names
+                localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:5]',
+            }
+        }
+    }
+
     const sccsLoader = {
         test: /\.s[ac]ss$/i,
         use: [
@@ -13,7 +23,8 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
             // style-loader -> MiniCssExtractPlugin.loader
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             // Translates CSS into CommonJS
-            "css-loader",
+            // "css-loader" -> cssLoaderWithModules,
+            cssLoaderWithModules,
             // Compiles Sass to CSS
             "sass-loader",
         ],
