@@ -4,7 +4,8 @@
     "noImplicitAny": true,
     "module": "ESNext",
     "target": "es5",
-    "jsx": "react",
+    // allow not import React, version >17
+    "jsx": "react-jsx", // "react",
     "allowJs": true,
     "moduleResolution": "node",
     // import (require() module.export_ = common js
