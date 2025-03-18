@@ -13,6 +13,12 @@
     // if no exists default export
     // import * as smth from 'smw' -> import smth from 'smw'
     "esModuleInterop": true,
+    // for alias -- cannot find file exports
+    "baseUrl": ".",
+    // alias
+    "paths": {
+      "@/*": ["./src/*"],
+    }
   },
   "ts-node": {
     "compilerOptions": {

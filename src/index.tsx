@@ -3,8 +3,8 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 // loading indication
 import {Suspense} from 'react';
 
-import {App} from './components/App';
-import {Shop, About} from './pages';
+import {App} from '@/components/App';
+import {Shop, About} from '@/pages';
 
 const root = document.getElementById('root');
 
