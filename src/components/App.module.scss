@@ -8,3 +8,18 @@
     gap: 15px;
     margin-bottom: 20px;
 }
+
+.pictureRoot {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-bottom: 20px;
+}
+
+.picture {
+    max-height: 250px;
+}
+
+.icon {
+    color: green;
+}
