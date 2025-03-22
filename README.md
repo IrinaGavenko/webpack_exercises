@@ -14,3 +14,6 @@ Base path from empty project to micro frontend
 * bundle analizer
   
 **Part 3:** __________
+* alias
+* assets: png, jpg, etc
+* svg as component
