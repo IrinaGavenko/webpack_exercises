@@ -20,3 +20,5 @@ Base path from empty project to micro frontend
   
  **Part 4:** __________ 
 * tree shacking
+* excluding type checking form build
+* adding type checking in dev mode with saving build time
