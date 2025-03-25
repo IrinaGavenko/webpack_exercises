@@ -13,8 +13,19 @@ export const App = () => {
     const [count, setCount] = useState(0);
     const increment = () => setCount(prev => prev + 1)
 
+    // check build -- in diffrent env.build only one branch exists
+    let platformTitle;
+    if (__PLATFORM__ === 'desktop') {
+        platformTitle = <div>IS DESKTOP</div>
+    }
+    if (__PLATFORM__ === 'mobile') {
+        platformTitle = <div>IS MOBILE</div>
+    }
+
     return (
         <>
+            <h1>PLATFORM {platformTitle}</h1>
+
             <div className={styles.nav}>
             <Link to={'/about'}>about</Link>
             <Link to={'shop'}>shop</Link>
