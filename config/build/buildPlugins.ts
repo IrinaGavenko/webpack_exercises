@@ -1,6 +1,7 @@
 import webpack, {Configuration, DefinePlugin} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -24,6 +25,8 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions): C
 
     if (isDev) {
         plugins.push(new webpack.ProgressPlugin())
+        // build still fast, adding strict type checking
+        plugins.push(new ForkTsCheckerWebpackPlugin())
     }
 
     if (isProd) {
