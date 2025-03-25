@@ -63,7 +63,16 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
 
     const tsLoader = {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [
+            {
+                loader: 'ts-loader',
+                options: {
+                    // move ts check in another brunch
+                    // build becomes faster and not crashes due to type errors
+                    transpileOnly: true, // transpileOnly: isDev
+                },
+            }
+        ],
         exclude: /node_modules/,
     }
 

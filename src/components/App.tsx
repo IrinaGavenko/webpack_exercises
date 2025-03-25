@@ -10,6 +10,8 @@ import * as styles from './App.module.scss';
 
 
 export const App = () => {
+    const testTS = (a: number): number  => a + 5;
+
     const [count, setCount] = useState(0);
     const increment = () => setCount(prev => prev + 1)
 
@@ -21,6 +23,10 @@ export const App = () => {
     if (__PLATFORM__ === 'mobile') {
         platformTitle = <div>IS MOBILE</div>
     }
+
+    // it has type error, however start still works
+    // in dev mode ForkTsCheckerWebpackPlugin will show an error
+    // testTS("5")
 
     return (
         <>
