@@ -4,6 +4,9 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+
+import path from 'path';
 
 import {BuildOptions} from './types/types';
 
@@ -11,14 +14,21 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions): C
     const isDev = mode === 'development';
     const isProd = mode === 'production';
 
+    const localizationPath = path.resolve(paths.public, 'locales')
 
     let plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({
             template: paths.html,
+            favicon: path.resolve(paths.public, 'favicon.ico'),
         }),
         new DefinePlugin({
             // all params that are necessary (dev, platform, etc.)
             __PLATFORM__: JSON.stringify(platform),
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: localizationPath, to: path.resolve(paths.output, 'locales') },
+            ],
         }),
     ];
 
