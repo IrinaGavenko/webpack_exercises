@@ -2,9 +2,8 @@ import webpack, {Configuration, DefinePlugin} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 import {BuildOptions} from './types/types';
 
@@ -18,7 +17,7 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions): C
             template: paths.html,
         }),
         new DefinePlugin({
-            // all params that are necessary (dev, platform, etc)
+            // all params that are necessary (dev, platform, etc.)
             __PLATFORM__: JSON.stringify(platform),
         }),
     ];
@@ -27,6 +26,7 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions): C
         plugins.push(new webpack.ProgressPlugin())
         // build still fast, adding strict type checking
         plugins.push(new ForkTsCheckerWebpackPlugin())
+        plugins.push(new ReactRefreshWebpackPlugin())
     }
 
     if (isProd) {
