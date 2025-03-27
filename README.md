@@ -22,3 +22,4 @@ Base path from empty project to micro frontend
 * tree shacking
 * excluding type checking form build
 * adding type checking in dev mode with saving build time
+* Hot Module Replacement
