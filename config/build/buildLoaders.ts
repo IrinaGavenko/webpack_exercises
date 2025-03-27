@@ -88,6 +88,7 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
         use: {
             loader: "babel-loader",
             options: {
+                // possible move it to babel.config.json
                 presets: [
                     // standart
                     '@babel/preset-env',
