@@ -10,5 +10,8 @@ export function buildDevServer({port}: BuildOptions): DevServerConfiguration {
         // for route using -- only for dev
         // if static works using nginx -- needed to use proxy to Index.html
         historyApiFallback: true,
+        // update code without page refreshing
+        // !!! not working for frameworks as React
+        hot: true,
     }
 }
