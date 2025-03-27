@@ -81,11 +81,33 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
         exclude: /node_modules/,
     }
 
+    const babelLoader = {
+        test: /\.tsx?$/,
+        // test: /\.m?js$/, -- not working with ts
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: [
+                    // standart
+                    '@babel/preset-env',
+                    // for ts
+                    '@babel/preset-typescript',
+                    // for react
+                    ['@babel/preset-react', {
+                        runtime: 'automatic',
+                    }],
+                ]
+            }
+        }
+    }
+
     // order in array is important!
     return [
         assetLoader,
         sccsLoader,
-        tsLoader,
+        // tsLoader, -> change for babel
+        babelLoader,
         svgLoader,
     ]
 }
