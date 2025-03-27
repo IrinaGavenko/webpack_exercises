@@ -17,6 +17,7 @@ Base path from empty project to micro frontend
 * alias
 * assets: png, jpg, etc
 * svg as component
+* Favicon and CopyPlugin
   
  **Part 4:** __________ 
 * tree shacking
