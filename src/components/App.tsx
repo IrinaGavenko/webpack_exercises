@@ -30,7 +30,7 @@ export const App = () => {
 
     return (
         <>
-            <h1>PLATFORM {platformTitle}</h1>
+            <h1 data-testId={'platform.testId'}>PLATFORM {platformTitle}</h1>
             <div className={styles.nav}>
             <Link to={'/about'}>about</Link>
             <Link to={'shop'}>shop</Link>

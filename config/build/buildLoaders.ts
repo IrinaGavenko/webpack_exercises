@@ -3,8 +3,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import {BuildOptions} from './types/types';
+import {buildBabelLoader} from './babel/buildBabelLoader';
 
-export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
+export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
+    const {mode} = options;
     const isDev = mode === 'development';
 
     const assetLoader = {
@@ -81,11 +83,14 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
         exclude: /node_modules/,
     }
 
+    const babelLoader = buildBabelLoader(options);
+
     // order in array is important!
     return [
         assetLoader,
         sccsLoader,
-        tsLoader,
+        // tsLoader, -> change for babel
+        babelLoader,
         svgLoader,
     ]
 }
