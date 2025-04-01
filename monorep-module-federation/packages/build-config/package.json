@@ -1,5 +1,5 @@
 {
-  "name": "build-config",
+  "name": "@packages/build-config",
   "version": "1.0.0",
   "main": "./src/index.ts",
   "devDependencies": {
