@@ -83,14 +83,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         exclude: /node_modules/,
     }
 
-    const babelLoader = buildBabelLoader(options);
+    // const babelLoader = buildBabelLoader(options);
 
     // order in array is important!
     return [
         assetLoader,
         sccsLoader,
-        // tsLoader, -> change for babel
-        babelLoader,
+        tsLoader, // -> change for babel
+        // babelLoader,
         svgLoader,
     ]
 }

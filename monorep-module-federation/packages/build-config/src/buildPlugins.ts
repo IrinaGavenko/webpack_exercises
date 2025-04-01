@@ -35,7 +35,7 @@ export function buildPlugins({mode, paths, analyzer, platform}: BuildOptions): C
     if (isDev) {
         plugins.push(new webpack.ProgressPlugin())
         // build still fast, adding strict type checking
-        plugins.push(new ForkTsCheckerWebpackPlugin())
+        // plugins.push(new ForkTsCheckerWebpackPlugin())
         plugins.push(new ReactRefreshWebpackPlugin())
     }
 
