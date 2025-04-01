@@ -24,3 +24,7 @@ Base path from empty project to micro frontend
 * excluding type checking form build
 * adding type checking in dev mode with saving build time
 * Hot Module Replacement
+
+ **Part 5:** __________ 
+* base babel
+* custom babel-plugin: remove attribute "data-testId" from production build
