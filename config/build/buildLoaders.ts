@@ -3,8 +3,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import {BuildOptions} from './types/types';
+import {buildBabelLoader} from './babel/buildBabelLoader';
 
-export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
+export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
+    const {mode} = options;
     const isDev = mode === 'development';
 
     const assetLoader = {
@@ -81,27 +83,7 @@ export function buildLoaders({mode}: BuildOptions): ModuleOptions['rules'] {
         exclude: /node_modules/,
     }
 
-    const babelLoader = {
-        test: /\.tsx?$/,
-        // test: /\.m?js$/, -- not working with ts
-        exclude: /node_modules/,
-        use: {
-            loader: "babel-loader",
-            options: {
-                // possible move it to babel.config.json
-                presets: [
-                    // standart
-                    '@babel/preset-env',
-                    // for ts
-                    '@babel/preset-typescript',
-                    // for react
-                    ['@babel/preset-react', {
-                        runtime: 'automatic',
-                    }],
-                ]
-            }
-        }
-    }
+    const babelLoader = buildBabelLoader(options);
 
     // order in array is important!
     return [
