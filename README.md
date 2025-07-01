@@ -6,7 +6,7 @@
   
 2. Microfrontend
 
-Two apps with shared configs and some shared components/functions/etc
+  Two apps with shared configs and some shared components/functions/etc
 
  * host -> admin
  * host -> shop
